@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="JobHub - Ofertas de Empleo">
+  <div class="container mx-auto px-4 py-8 max-w-6xl">
+    <h1 class="text-2xl font-bold mb-6 text-center">Ofertas de Empleo</h1>
+    
+    <div class="grid gap-6 md:grid-cols-1 lg:grid-cols-1">
+      <!-- Job listings -->
+      <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-semibold mb-4">Desarrollador Frontend</h2>
+        <p class="text-gray-300 mb-2">Empresa: <span class="text-blue-400">TechSolutions</span></p>
+        <p class="text-gray-300 mb-4">Ubicación: Remoto • Tiempo completo</p>
+        <p class="text-gray-400 mb-4">Buscamos un desarrollador frontend con experiencia en React y conocimientos de UI/UX.</p>
+        <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded">Ver Detalles</a>
+      </div>
+      
+      <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-semibold mb-4">Desarrollador Backend</h2>
+        <p class="text-gray-300 mb-2">Empresa: <span class="text-blue-400">InnovaTech</span></p>
+        <p class="text-gray-300 mb-4">Ubicación: Híbrido • Tiempo completo</p>
+        <p class="text-gray-400 mb-4">Experiencia en desarrollo de APIs RESTful y bases de datos SQL y NoSQL.</p>
+        <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded">Ver Detalles</a>
+      </div>
+      
+      <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-semibold mb-4">Analista de Datos</h2>
+        <p class="text-gray-300 mb-2">Empresa: <span class="text-blue-400">Data Insights Corp</span></p>
+        <p class="text-gray-300 mb-4">Ubicación: Presencial • Tiempo completo</p>
+        <p class="text-gray-400 mb-4">Conocimientos en análisis de datos, Python y herramientas de visualización.</p>
+        <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded">Ver Detalles</a>
+      </div>
+      
+      <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-semibold mb-4">Desarrollador Mobile</h2>
+        <p class="text-gray-300 mb-2">Empresa: <span class="text-blue-400">TechCreations</span></p>
+        <p class="text-gray-300 mb-4">Ubicación: Remoto • Tiempo completo</p>
+        <p class="text-gray-400 mb-4">Experiencia en desarrollo de aplicaciones móviles con React Native o Flutter.</p>
+        <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded">Ver Detalles</a>
+      </div>
+      
+      <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-semibold mb-4">DevOps Engineer</h2>
+        <p class="text-gray-300 mb-2">Empresa: <span class="text-blue-400">CloudTech</span></p>
+        <p class="text-gray-300 mb-4">Ubicación: Híbrido • Tiempo completo</p>
+        <p class="text-gray-400 mb-4">Experiencia en CI/CD, Docker, Kubernetes y servicios en la nube.</p>
+        <a href="#" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded">Ver Detalles</a>
+      </div>
+    </div>
+    
+    <div class="mt-8 text-center">
+      <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded">
+        Cargar más ofertas
+      </button>
+    </div>
+  </div>
+</Layout>
