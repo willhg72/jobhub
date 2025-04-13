@@ -193,35 +193,43 @@ import Layout from '../layouts/Layout.astro';
     const registerForm = document.getElementById('register-form');
     
     if (registerForm) {
-      registerForm.addEventListener('submit', (e) => {
+      registerForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        const emailInput = document.getElementById('email') as HTMLInputElement;
-        const passwordInput = document.getElementById('password') as HTMLInputElement;
-        const confirmPasswordInput = document.getElementById('confirm-password') as HTMLInputElement;
+        // Use vanilla JavaScript to get input values
+        let email = '';
+        let password = '';
+        let confirmPassword = '';
         
-        if (emailInput && passwordInput && confirmPasswordInput) {
-          const email = emailInput.value;
-          const password = passwordInput.value;
-          const confirmPassword = confirmPasswordInput.value;
-          
-          // Validate passwords match
-          if (password !== confirmPassword) {
-            alert('Las contraseñas no coinciden');
-            return;
-          }
-          
-          // In a real app, you would send this data to a backend
-          // For this prototype, we'll just simulate a successful registration
-          
-          // Store authentication in localStorage
-          localStorage.setItem('isAuthenticated', 'true');
-          localStorage.setItem('userType', userType);
-          localStorage.setItem('userEmail', email);
-          
-          // Redirect to dashboard
-          window.location.href = '/dashboard';
+        // Get elements and check if they exist before accessing values
+        const emailInput = document.getElementById('email');
+        if (emailInput instanceof HTMLInputElement) {
+          email = emailInput.value;
         }
+        
+        const passwordInput = document.getElementById('password');
+        if (passwordInput instanceof HTMLInputElement) {
+          password = passwordInput.value;
+        }
+        
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        if (confirmPasswordInput instanceof HTMLInputElement) {
+          confirmPassword = confirmPasswordInput.value;
+        }
+        
+        // Validate passwords match
+        if (password !== confirmPassword) {
+          alert('Las contraseñas no coinciden');
+          return;
+        }
+        
+        // Store authentication in localStorage
+        localStorage.setItem('isAuthenticated', 'true');
+        localStorage.setItem('userType', userType);
+        localStorage.setItem('userEmail', email);
+        
+        // Redirect to dashboard
+        window.location.href = '/dashboard';
       });
     }
   });
