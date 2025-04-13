@@ -1,7 +1,7 @@
 ---
-import { Navbar } from '../components/Navbar';
+import Navigation from '../components/Navigation';
 
-export interface Props {
+interface Props {
   title: string;
 }
 
@@ -12,19 +12,54 @@ const { title } = Astro.props;
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
-    <Navbar client:load />
-    <main>
+  <body class="bg-gray-900 text-white min-h-screen flex flex-col">
+    <header class="sticky top-0 z-50 w-full">
+      <Navigation client:load />
+    </header>
+    
+    <main class="flex-grow">
       <slot />
     </main>
-    <footer class="bg-gray-100 dark:bg-gray-800 py-4 mt-8">
-      <div class="container mx-auto text-center text-gray-600 dark:text-gray-400">
-        © {new Date().getFullYear()} JobHub. Todos los derechos reservados.
+    
+    <footer class="bg-gray-800 py-6">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-4 md:mb-0">
+            <a href="/" class="flex items-center space-x-2">
+              <span class="text-blue-500 text-2xl">□</span>
+              <span class="text-xl font-bold">JobHub</span>
+            </a>
+            <p class="text-gray-400 mt-2">Encuentra tu próxima oportunidad laboral</p>
+          </div>
+          
+          <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
+            <div>
+              <h3 class="text-lg font-medium mb-2">Enlaces</h3>
+              <ul class="space-y-2">
+                <li><a href="/" class="text-gray-400 hover:text-white">Inicio</a></li>
+                <li><a href="/empleos" class="text-gray-400 hover:text-white">Empleos</a></li>
+                <li><a href="/empresas" class="text-gray-400 hover:text-white">Empresas</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-medium mb-2">Contacto</h3>
+              <ul class="space-y-2">
+                <li class="text-gray-400">info@jobhub.com</li>
+                <li class="text-gray-400">+1 (555) 123-4567</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400">
+          <p>&copy; {new Date().getFullYear()} JobHub. Todos los derechos reservados.</p>
+        </div>
       </div>
     </footer>
   </body>
