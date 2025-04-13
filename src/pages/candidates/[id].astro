@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { FAKE_CANDIDATES } from '../../data/fakeData';
+
+export function getStaticPaths() {
+  return FAKE_CANDIDATES.map(candidate => ({
+    params: { id: candidate.id },
+    props: { candidate },
+  }));
+}
+
+const { candidate } = Astro.props;
+---
+
+<Layout title={`JobHub - ${candidate.name}`}>
+  <div class="container mx-auto p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 max-w-3xl mx-auto">
+      <h1 class="text-3xl font-bold mb-4">{candidate.name}</h1>
+      <p class="text-xl mb-2">{candidate.email}</p>
+      
+      <div class="mt-6">
+        <h2 class="text-2xl font-semibold mb-2">Experiencia</h2>
+        <p class="text-gray-700 dark:text-gray-300 mb-4">{candidate.experience}</p>
+        
+        <h2 class="text-2xl font-semibold mb-2">Educación</h2>
+        <p class="text-gray-700 dark:text-gray-300 mb-4">{candidate.education}</p>
+        
+        <h2 class="text-2xl font-semibold mb-2">Habilidades</h2>
+        <div class="flex flex-wrap gap-2 mb-6">
+          {candidate.skills.map((skill) => (
+            <span class="inline-block bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full px-3 py-1 text-sm font-semibold">
+              {skill}
+            </span>
+          ))}
+        </div>
+        
+        <div class="mt-6">
+          <a 
+            href={candidate.cv} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded inline-flex items-center"
+          >
+            Ver CV
+          </a>
+          <a 
+            href="/candidates" 
+            class="ml-4 bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded inline-flex items-center"
+          >
+            Volver a Candidatos
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

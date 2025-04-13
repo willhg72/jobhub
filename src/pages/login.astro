@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="JobHub - Iniciar Sesión">
+  <div class="container mx-auto p-4 flex justify-center items-center min-h-[calc(100vh-200px)]">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 w-full max-w-md">
+      <h1 class="text-2xl font-bold mb-6 text-center">Iniciar Sesión</h1>
+      
+      <div class="mb-6">
+        <div class="flex border-b border-gray-200 dark:border-gray-700">
+          <button 
+            id="candidate-tab" 
+            class="py-2 px-4 font-medium text-center border-b-2 border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 flex-1"
+          >
+            Candidato
+          </button>
+          <button 
+            id="company-tab" 
+            class="py-2 px-4 font-medium text-center text-gray-500 dark:text-gray-400 flex-1"
+          >
+            Empresa
+          </button>
+        </div>
+      </div>
+      
+      <form id="login-form" class="space-y-4">
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            Correo Electrónico
+          </label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+            placeholder="ejemplo@correo.com"
+          />
+        </div>
+        
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            Contraseña
+          </label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+            placeholder="••••••••"
+          />
+        </div>
+        
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <input 
+              id="remember-me" 
+              name="remember-me" 
+              type="checkbox" 
+              class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            />
+            <label for="remember-me" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+              Recordarme
+            </label>
+          </div>
+          
+          <div class="text-sm">
+            <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">
+              ¿Olvidaste tu contraseña?
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <button 
+            type="submit" 
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Iniciar Sesión
+          </button>
+        </div>
+      </form>
+      
+      <div class="mt-6 text-center">
+        <p class="text-sm text-gray-600 dark:text-gray-400">
+          ¿No tienes una cuenta?
+          <a href="/register" class="text-blue-600 dark:text-blue-400 hover:underline">
+            Regístrate
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Handle tab switching
+  const candidateTab = document.getElementById('candidate-tab');
+  const companyTab = document.getElementById('company-tab');
+  let userType = 'candidate'; // Default user type
+  
+  candidateTab.addEventListener('click', () => {
+    candidateTab.classList.add('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
+    candidateTab.classList.remove('text-gray-500', 'dark:text-gray-400');
+    
+    companyTab.classList.remove('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
+    companyTab.classList.add('text-gray-500', 'dark:text-gray-400');
+    
+    userType = 'candidate';
+  });
+  
+  companyTab.addEventListener('click', () => {
+    companyTab.classList.add('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
+    companyTab.classList.remove('text-gray-500', 'dark:text-gray-400');
+    
+    candidateTab.classList.remove('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
+    candidateTab.classList.add('text-gray-500', 'dark:text-gray-400');
+    
+    userType = 'company';
+  });
+  
+  // Handle form submission
+  const loginForm = document.getElementById('login-form');
+  
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const rememberMe = document.getElementById('remember-me').checked;
+    
+    // In a real app, you would validate credentials against a backend
+    // For this prototype, we'll just simulate a successful login
+    
+    // Store authentication in localStorage
+    localStorage.setItem('isAuthenticated', 'true');
+    localStorage.setItem('userType', userType);
+    localStorage.setItem('userEmail', email);
+    
+    if (rememberMe) {
+      localStorage.setItem('rememberMe', 'true');
+    }
+    
+    // Redirect to dashboard
+    window.location.href = '/dashboard';
+  });
+</script>

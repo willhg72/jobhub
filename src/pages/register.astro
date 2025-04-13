@@ -1,0 +1,216 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="JobHub - Registro">
+  <div class="container mx-auto p-4 flex justify-center items-center min-h-[calc(100vh-200px)]">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 w-full max-w-md">
+      <h1 class="text-2xl font-bold mb-6 text-center">Crear una Cuenta</h1>
+      
+      <div class="mb-6">
+        <div class="flex border-b border-gray-200 dark:border-gray-700">
+          <button 
+            id="candidate-tab" 
+            class="py-2 px-4 font-medium text-center border-b-2 border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 flex-1"
+          >
+            Candidato
+          </button>
+          <button 
+            id="company-tab" 
+            class="py-2 px-4 font-medium text-center text-gray-500 dark:text-gray-400 flex-1"
+          >
+            Empresa
+          </button>
+        </div>
+      </div>
+      
+      <form id="register-form" class="space-y-4">
+        <div id="candidate-fields">
+          <div class="mb-4">
+            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Nombre Completo
+            </label>
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              required 
+              class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+              placeholder="Juan Pérez"
+            />
+          </div>
+        </div>
+        
+        <div id="company-fields" class="hidden">
+          <div class="mb-4">
+            <label for="company-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Nombre de la Empresa
+            </label>
+            <input 
+              type="text" 
+              id="company-name" 
+              name="company-name" 
+              class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+              placeholder="Empresa S.A."
+            />
+          </div>
+          
+          <div class="mb-4">
+            <label for="industry" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+              Industria
+            </label>
+            <select 
+              id="industry" 
+              name="industry" 
+              class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+            >
+              <option value="">Selecciona una industria</option>
+              <option value="Tecnología">Tecnología</option>
+              <option value="Salud">Salud</option>
+              <option value="Educación">Educación</option>
+              <option value="Finanzas">Finanzas</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+        </div>
+        
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            Correo Electrónico
+          </label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+            placeholder="ejemplo@correo.com"
+          />
+        </div>
+        
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            Contraseña
+          </label>
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+            placeholder="••••••••"
+          />
+        </div>
+        
+        <div>
+          <label for="confirm-password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            Confirmar Contraseña
+          </label>
+          <input 
+            type="password" 
+            id="confirm-password" 
+            name="confirm-password" 
+            required 
+            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
+            placeholder="••••••••"
+          />
+        </div>
+        
+        <div class="flex items-center">
+          <input 
+            id="terms" 
+            name="terms" 
+            type="checkbox" 
+            required
+            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+          />
+          <label for="terms" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+            Acepto los <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">Términos y Condiciones</a>
+          </label>
+        </div>
+        
+        <div>
+          <button 
+            type="submit" 
+            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Registrarse
+          </button>
+        </div>
+      </form>
+      
+      <div class="mt-6 text-center">
+        <p class="text-sm text-gray-600 dark:text-gray-400">
+          ¿Ya tienes una cuenta?
+          <a href="/login" class="text-blue-600 dark:text-blue-400 hover:underline">
+            Inicia Sesión
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Handle tab switching
+  const candidateTab = document.getElementById('candidate-tab');
+  const companyTab = document.getElementById('company-tab');
+  const candidateFields = document.getElementById('candidate-fields');
+  const companyFields = document.getElementById('company-fields');
+  let userType = 'candidate'; // Default user type
+  
+  candidateTab.addEventListener('click', () => {
+    candidateTab.classList.add('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
+    candidateTab.classList.remove('text-gray-500', 'dark:text-gray-400');
+    
+    companyTab.classList.remove('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
+    companyTab.classList.add('text-gray-500', 'dark:text-gray-400');
+    
+    candidateFields.classList.remove('hidden');
+    companyFields.classList.add('hidden');
+    
+    userType = 'candidate';
+  });
+  
+  companyTab.addEventListener('click', () => {
+    companyTab.classList.add('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
+    companyTab.classList.remove('text-gray-500', 'dark:text-gray-400');
+    
+    candidateTab.classList.remove('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
+    candidateTab.classList.add('text-gray-500', 'dark:text-gray-400');
+    
+    companyFields.classList.remove('hidden');
+    candidateFields.classList.add('hidden');
+    
+    userType = 'company';
+  });
+  
+  // Handle form submission
+  const registerForm = document.getElementById('register-form');
+  
+  registerForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    
+    // Validate passwords match
+    if (password !== confirmPassword) {
+      alert('Las contraseñas no coinciden');
+      return;
+    }
+    
+    // In a real app, you would send this data to a backend
+    // For this prototype, we'll just simulate a successful registration
+    
+    // Store authentication in localStorage
+    localStorage.setItem('isAuthenticated', 'true');
+    localStorage.setItem('userType', userType);
+    localStorage.setItem('userEmail', email);
+    
+    // Redirect to dashboard
+    window.location.href = '/dashboard';
+  });
+</script>
