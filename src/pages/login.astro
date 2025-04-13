@@ -96,54 +96,72 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <script>
-  // Handle tab switching
-  const candidateTab = document.getElementById('candidate-tab');
-  const companyTab = document.getElementById('company-tab');
-  let userType = 'candidate'; // Default user type
-  
-  candidateTab.addEventListener('click', () => {
-    candidateTab.classList.add('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
-    candidateTab.classList.remove('text-gray-500', 'dark:text-gray-400');
+  document.addEventListener('DOMContentLoaded', () => {
+    // Handle tab switching
+    const candidateTab = document.getElementById('candidate-tab');
+    const companyTab = document.getElementById('company-tab');
+    let userType = 'candidate'; // Default user type
     
-    companyTab.classList.remove('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
-    companyTab.classList.add('text-gray-500', 'dark:text-gray-400');
-    
-    userType = 'candidate';
-  });
-  
-  companyTab.addEventListener('click', () => {
-    companyTab.classList.add('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
-    companyTab.classList.remove('text-gray-500', 'dark:text-gray-400');
-    
-    candidateTab.classList.remove('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
-    candidateTab.classList.add('text-gray-500', 'dark:text-gray-400');
-    
-    userType = 'company';
-  });
-  
-  // Handle form submission
-  const loginForm = document.getElementById('login-form');
-  
-  loginForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const rememberMe = document.getElementById('remember-me').checked;
-    
-    // In a real app, you would validate credentials against a backend
-    // For this prototype, we'll just simulate a successful login
-    
-    // Store authentication in localStorage
-    localStorage.setItem('isAuthenticated', 'true');
-    localStorage.setItem('userType', userType);
-    localStorage.setItem('userEmail', email);
-    
-    if (rememberMe) {
-      localStorage.setItem('rememberMe', 'true');
+    if (candidateTab) {
+      candidateTab.addEventListener('click', () => {
+        candidateTab.classList.add('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
+        candidateTab.classList.remove('text-gray-500', 'dark:text-gray-400');
+        
+        if (companyTab) {
+          companyTab.classList.remove('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
+          companyTab.classList.add('text-gray-500', 'dark:text-gray-400');
+        }
+        
+        userType = 'candidate';
+      });
     }
     
-    // Redirect to dashboard
-    window.location.href = '/dashboard';
+    if (companyTab) {
+      companyTab.addEventListener('click', () => {
+        companyTab.classList.add('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
+        companyTab.classList.remove('text-gray-500', 'dark:text-gray-400');
+        
+        if (candidateTab) {
+          candidateTab.classList.remove('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
+          candidateTab.classList.add('text-gray-500', 'dark:text-gray-400');
+        }
+        
+        userType = 'company';
+      });
+    }
+    
+    // Handle form submission
+    const loginForm = document.getElementById('login-form');
+    
+    if (loginForm) {
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const emailInput = document.getElementById('email') as HTMLInputElement;
+        const passwordInput = document.getElementById('password') as HTMLInputElement;
+        const rememberMeInput = document.getElementById('remember-me') as HTMLInputElement;
+        
+        if (emailInput && passwordInput && rememberMeInput) {
+          const email = emailInput.value;
+          const password = passwordInput.value;
+          const rememberMe = rememberMeInput.checked;
+          
+          // In a real app, you would validate credentials against a backend
+          // For this prototype, we'll just simulate a successful login
+          
+          // Store authentication in localStorage
+          localStorage.setItem('isAuthenticated', 'true');
+          localStorage.setItem('userType', userType);
+          localStorage.setItem('userEmail', email);
+          
+          if (rememberMe) {
+            localStorage.setItem('rememberMe', 'true');
+          }
+          
+          // Redirect to dashboard
+          window.location.href = '/dashboard';
+        }
+      });
+    }
   });
 </script>

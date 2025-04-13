@@ -313,12 +313,12 @@ import { FAKE_JOBS, FAKE_APPLICATIONS, FAKE_CANDIDATES, FAKE_COMPANIES } from '.
     const candidateDashboard = document.getElementById('candidate-dashboard');
     const companyDashboard = document.getElementById('company-dashboard');
     
-    if (userType === 'candidate') {
+    if (userType === 'candidate' && candidateDashboard) {
       candidateDashboard.classList.remove('hidden');
-    } else if (userType === 'company') {
+    } else if (userType === 'company' && companyDashboard) {
       companyDashboard.classList.remove('hidden');
     } else {
-      // If no user type is found, redirect to home
+      // If no user type is found or elements don't exist, redirect to home
       window.location.href = '/';
     }
   });

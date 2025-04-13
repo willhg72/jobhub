@@ -1,184 +1,179 @@
 import type { Job, Company, Candidate, Application } from '../interfaces';
 
-export const FAKE_JOBS: Job[] = [
-    {
-        id: '1',
-        title: 'Desarrollador/a Full Stack',
-        company: 'Tech Innovators Inc.',
-        location: 'Bogotá, Colombia',
-        description: 'Buscamos un desarrollador/a apasionado/a por crear soluciones web innovadoras. Trabajarás en un equipo multidisciplinario para diseñar, desarrollar e implementar aplicaciones web de alto rendimiento.',
-        requirements: [
-            'Experiencia con React, Node.js y bases de datos SQL/NoSQL.',
-            'Conocimientos de HTML, CSS y JavaScript/TypeScript.',
-            'Capacidad para trabajar en equipo y comunicarse eficazmente.',
-            'Inglés intermedio o avanzado.',
-        ],
-        salary: '$80.000.000 - $120.000.000 COP al año',
-        datePosted: '2024-07-28',
-        category: 'Tecnología',
-    },
-    {
-        id: '2',
-        title: 'Diseñador/a UX/UI',
-        company: 'Creative Solutions Co.',
-        location: 'Medellín, Colombia',
-        description: 'Buscamos un/a diseñador/a UX/UI con experiencia en la creación de interfaces de usuario intuitivas y atractivas. Trabajarás en estrecha colaboración con desarrolladores y stakeholders para garantizar la mejor experiencia de usuario posible.',
-        requirements: [
-            'Experiencia con Figma, Sketch o Adobe XD.',
-            'Conocimientos de diseño de interacción y arquitectura de la información.',
-            'Capacidad para realizar investigaciones de usuario y pruebas de usabilidad.',
-            'Portafolio que demuestre habilidades de diseño.',
-        ],
-        salary: '$60.000.000 - $90.000.000 COP al año',
-        datePosted: '2024-07-25',
-        category: 'Diseño',
-    },
-    {
-        id: '3',
-        title: 'Analista de Datos',
-        company: 'Data Insights Corp.',
-        location: 'Cali, Colombia',
-        description: 'Buscamos un/a analista de datos para extraer insights valiosos de nuestros datos. Trabajarás con grandes conjuntos de datos para identificar tendencias, patrones y oportunidades de mejora.',
-        requirements: [
-            'Experiencia con SQL, Python o R.',
-            'Conocimientos de herramientas de visualización de datos (Tableau, Power BI, etc.).',
-            'Capacidad para comunicar hallazgos de manera clara y concisa.',
-            'Pensamiento analítico y resolución de problemas.',
-        ],
-        salary: '$70.000.000 - $110.000.000 COP al año',
-        datePosted: '2024-07-20',
-        category: 'Analítica',
-    },
-    {
-        id: '4',
-        title: 'Ingeniero/a de Software',
-        company: 'Global Tech Solutions',
-        location: 'Bogotá, Colombia',
-        description: 'Estamos buscando un/a ingeniero/a de software altamente motivado/a para unirse a nuestro equipo. El candidato ideal tendrá experiencia en el desarrollo de aplicaciones escalables y de alto rendimiento.',
-        requirements: [
-            'Licenciatura en Ciencias de la Computación o campo relacionado.',
-            'Experiencia con Java, C++, o Go.',
-            'Conocimiento de arquitecturas de microservicios.',
-            'Experiencia con sistemas de control de versiones (Git).',
-        ],
-        salary: '$90.000.000 - $130.000.000 COP al año',
-        datePosted: '2024-07-15',
-        category: 'Tecnología',
-    },
-    {
-        id: '5',
-        title: 'Especialista en Marketing Digital',
-        company: 'Marketing Pro',
-        location: 'Medellín, Colombia',
-        description: 'Buscamos un/a especialista en marketing digital para desarrollar e implementar estrategias de marketing online. El candidato ideal tendrá experiencia en SEO, SEM, redes sociales y marketing de contenidos.',
-        requirements: [
-            'Experiencia demostrable en marketing digital.',
-            'Conocimiento de Google Analytics, Google Ads y otras herramientas de marketing.',
-            'Habilidad para crear y gestionar campañas de marketing efectivas.',
-            'Excelentes habilidades de comunicación y escritura.',
-        ],
-        salary: '$55.000.000 - $85.000.000 COP al año',
-        datePosted: '2024-07-10',
-        category: 'Marketing',
-    },
+export const FAKE_CANDIDATES: Candidate[] = [
+  {
+    id: '1',
+    name: 'Juan Pérez',
+    email: 'juan@example.com',
+    experience: '5 años de experiencia en desarrollo web',
+    education: 'Ingeniero en Sistemas, Universidad Nacional',
+    skills: ['JavaScript', 'React', 'Node.js', 'MongoDB', 'TypeScript'],
+    cv: '#'
+  },
+  {
+    id: '2',
+    name: 'María López',
+    email: 'maria@example.com',
+    experience: '3 años de experiencia en diseño UX/UI',
+    education: 'Diseñadora Gráfica, Universidad de Artes',
+    skills: ['Figma', 'Adobe XD', 'Sketch', 'HTML/CSS', 'Prototyping'],
+    cv: '#'
+  },
+  {
+    id: '3',
+    name: 'Carlos Rodríguez',
+    email: 'carlos@example.com',
+    experience: '7 años de experiencia en ciencia de datos',
+    education: 'PhD en Estadística, Universidad Tecnológica',
+    skills: ['Python', 'R', 'Machine Learning', 'SQL', 'Data Visualization'],
+    cv: '#'
+  }
 ];
 
 export const FAKE_COMPANIES: Company[] = [
-    {
-        id: '1',
-        name: 'Tech Innovators Inc.',
-        industry: 'Tecnología',
-        location: 'Bogotá, Colombia',
-        description: 'Somos una empresa líder en el desarrollo de software, dedicada a crear soluciones innovadoras para nuestros clientes.',
-        jobs: [FAKE_JOBS[0], FAKE_JOBS[3]],
-    },
-    {
-        id: '2',
-        name: 'Creative Solutions Co.',
-        industry: 'Diseño',
-        location: 'Medellín, Colombia',
-        description: 'Somos una agencia de diseño creativa, especializada en la creación de experiencias de usuario excepcionales.',
-        jobs: [FAKE_JOBS[1]],
-    },
-    {
-        id: '3',
-        name: 'Data Insights Corp.',
-        industry: 'Analítica',
-        location: 'Cali, Colombia',
-        description: 'Somos una empresa de análisis de datos, que ayuda a las empresas a tomar decisiones informadas basadas en datos.',
-        jobs: [FAKE_JOBS[2]],
-    },
-    {
-        id: '4',
-        name: 'Global Tech Solutions',
-        industry: 'Tecnología',
-        location: 'Bogotá, Colombia',
-        description: 'Una compañía global de tecnología que ofrece soluciones de software de punta a clientes en todo el mundo.',
-        jobs: [FAKE_JOBS[3]],
-    },
-    {
-        id: '5',
-        name: 'Marketing Pro',
-        industry: 'Marketing',
-        location: 'Medellín, Colombia',
-        description: 'Una agencia de marketing digital que ayuda a las empresas a alcanzar sus objetivos de marketing en línea.',
-        jobs: [FAKE_JOBS[4]],
-    },
+  {
+    id: '1',
+    name: 'TechSolutions',
+    industry: 'Tecnología',
+    location: 'Bogotá, Colombia',
+    description: 'Empresa líder en desarrollo de software y soluciones tecnológicas.',
+    jobs: ['1', '2']
+  },
+  {
+    id: '2',
+    name: 'Data Insights Corp.',
+    industry: 'Análisis de Datos',
+    location: 'Cali, Colombia',
+    description: 'Somos una empresa de análisis de datos, que ayuda a las empresas a tomar decisiones basadas en datos.',
+    jobs: ['3']
+  },
+  {
+    id: '3',
+    name: 'DesignHub',
+    industry: 'Diseño',
+    location: 'Medellín, Colombia',
+    description: 'Agencia creativa especializada en diseño de experiencias digitales.',
+    jobs: ['4', '5']
+  }
 ];
 
-export const FAKE_CANDIDATES: Candidate[] = [
-    {
-        id: '1',
-        name: 'Juan Pérez',
-        email: 'juan.perez@example.com',
-        skills: ['React', 'Node.js', 'SQL', 'NoSQL', 'JavaScript', 'TypeScript'],
-        experience: 'Desarrollador Full Stack con 5 años de experiencia.',
-        education: 'Ingeniería de Sistemas',
-        cv: 'https://example.com/juan-perez-cv.pdf',
-    },
-    {
-        id: '2',
-        name: 'María García',
-        email: 'maria.garcia@example.com',
-        skills: ['Figma', 'Sketch', 'Adobe XD', 'Diseño de Interacción', 'Investigación de Usuario'],
-        experience: 'Diseñadora UX/UI con 3 años de experiencia.',
-        education: 'Diseño Gráfico',
-        cv: 'https://example.com/maria-garcia-cv.pdf',
-    },
-    {
-        id: '3',
-        name: 'Carlos Rodríguez',
-        email: 'carlos.rodriguez@example.com',
-        skills: ['SQL', 'Python', 'R', 'Tableau', 'Power BI', 'Análisis de Datos'],
-        experience: 'Analista de Datos con 4 años de experiencia.',
-        education: 'Estadística',
-        cv: 'https://example.com/carlos-rodriguez-cv.pdf',
-    },
-    {
-        id: '4',
-        name: 'Ana López',
-        email: 'ana.lopez@example.com',
-        skills: ['Java', 'C++', 'Go', 'Microservicios', 'Git'],
-        experience: 'Ingeniera de Software con 6 años de experiencia.',
-        education: 'Ciencias de la Computación',
-        cv: 'https://example.com/ana-lopez-cv.pdf',
-    },
-    {
-        id: '5',
-        name: 'Diego Martínez',
-        email: 'diego.martinez@example.com',
-        skills: ['SEO', 'SEM', 'Redes Sociales', 'Marketing de Contenidos', 'Google Analytics'],
-        experience: 'Especialista en Marketing Digital con 4 años de experiencia.',
-        education: 'Marketing',
-        cv: 'https://example.com/diego-martinez-cv.pdf',
-    },
+export const FAKE_JOBS: Job[] = [
+  {
+    id: '1',
+    title: 'Desarrollador Frontend',
+    company: 'TechSolutions',
+    location: 'Bogotá, Colombia',
+    description: 'Buscamos un desarrollador frontend con experiencia en React para unirse a nuestro equipo.',
+    requirements: [
+      'Experiencia con React y TypeScript',
+      'Conocimientos de HTML, CSS y JavaScript',
+      'Familiaridad con sistemas de control de versiones (Git)',
+      'Capacidad para trabajar en equipo'
+    ],
+    salary: '$3,000,000 - $4,500,000 COP',
+    datePosted: '2023-07-15',
+    category: 'Desarrollo'
+  },
+  {
+    id: '2',
+    title: 'Desarrollador Backend',
+    company: 'TechSolutions',
+    location: 'Bogotá, Colombia (Remoto)',
+    description: 'Estamos buscando un desarrollador backend con experiencia en Node.js y bases de datos.',
+    requirements: [
+      'Experiencia con Node.js y Express',
+      'Conocimientos de bases de datos SQL y NoSQL',
+      'Familiaridad con arquitecturas de microservicios',
+      'Experiencia en desarrollo de APIs RESTful'
+    ],
+    salary: '$3,500,000 - $5,000,000 COP',
+    datePosted: '2023-07-10',
+    category: 'Desarrollo'
+  },
+  {
+    id: '3',
+    title: 'Analista de Datos',
+    company: 'Data Insights Corp.',
+    location: 'Cali, Colombia',
+    description: 'Buscamos un/a analista de datos para extraer insights valiosos de nuestros datos. Trabajarás con grandes volúmenes de información y herramientas de análisis avanzadas.',
+    requirements: [
+      'Experiencia en análisis de datos y estadística',
+      'Conocimientos de Python, R o herramientas similares',
+      'Experiencia con SQL y bases de datos',
+      'Capacidad para comunicar hallazgos de manera efectiva'
+    ],
+    salary: '$3,200,000 - $4,800,000 COP',
+    datePosted: '2023-07-19',
+    category: 'Análisis de Datos'
+  },
+  {
+    id: '4',
+    title: 'Diseñador UX/UI',
+    company: 'DesignHub',
+    location: 'Medellín, Colombia',
+    description: 'Buscamos un diseñador UX/UI creativo para diseñar interfaces intuitivas y atractivas.',
+    requirements: [
+      'Experiencia en diseño de interfaces de usuario',
+      'Dominio de herramientas como Figma, Adobe XD o Sketch',
+      'Conocimientos de principios de usabilidad',
+      'Portfolio que demuestre habilidades de diseño'
+    ],
+    salary: '$2,800,000 - $4,200,000 COP',
+    datePosted: '2023-07-05',
+    category: 'Diseño'
+  },
+  {
+    id: '5',
+    title: 'Diseñador Gráfico',
+    company: 'DesignHub',
+    location: 'Medellín, Colombia (Híbrido)',
+    description: 'Estamos en busca de un diseñador gráfico talentoso para crear materiales visuales impactantes.',
+    requirements: [
+      'Experiencia en diseño gráfico y branding',
+      'Dominio de Adobe Creative Suite',
+      'Conocimientos de diseño para medios digitales e impresos',
+      'Creatividad y atención al detalle'
+    ],
+    salary: '$2,500,000 - $3,800,000 COP',
+    datePosted: '2023-07-12',
+    category: 'Diseño'
+  }
 ];
 
 export const FAKE_APPLICATIONS: Application[] = [
-    { id: '1', candidateId: '1', jobId: '1', status: 'enviada', dateApplied: '2024-08-01' },
-    { id: '2', candidateId: '2', jobId: '1', status: 'revisada', dateApplied: '2024-07-30' },
-    { id: '3', candidateId: '1', jobId: '2', status: 'entrevista', dateApplied: '2024-07-29' },
-    { id: '4', candidateId: '3', jobId: '3', status: 'rechazada', dateApplied: '2024-07-28' },
-    { id: '5', candidateId: '4', jobId: '4', status: 'aceptada', dateApplied: '2024-08-02' },
-    { id: '6', candidateId: '5', jobId: '5', status: 'enviada', dateApplied: '2024-08-03' },
+  {
+    id: '1',
+    jobId: '1',
+    candidateId: '1',
+    dateApplied: '2023-07-16',
+    status: 'revisada'
+  },
+  {
+    id: '2',
+    jobId: '3',
+    candidateId: '1',
+    dateApplied: '2023-07-20',
+    status: 'enviada'
+  },
+  {
+    id: '3',
+    jobId: '2',
+    candidateId: '3',
+    dateApplied: '2023-07-11',
+    status: 'entrevista'
+  },
+  {
+    id: '4',
+    jobId: '4',
+    candidateId: '2',
+    dateApplied: '2023-07-06',
+    status: 'aceptada'
+  },
+  {
+    id: '5',
+    jobId: '5',
+    candidateId: '2',
+    dateApplied: '2023-07-13',
+    status: 'rechazada'
+  }
 ];

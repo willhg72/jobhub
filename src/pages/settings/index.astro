@@ -105,73 +105,102 @@ import { useState } from 'react';
 </Layout>
 
 <script>
-  // Theme toggle functionality
-  const lightThemeBtn = document.getElementById('lightTheme');
-  const darkThemeBtn = document.getElementById('darkTheme');
-  const systemThemeBtn = document.getElementById('systemTheme');
-  
-  // Check if theme is stored in localStorage
-  const savedTheme = localStorage.getItem('theme');
-  
-  if (savedTheme) {
-    document.documentElement.classList.toggle('dark', savedTheme === 'dark');
-  }
-  
-  lightThemeBtn.addEventListener('click', () => {
-    document.documentElement.classList.remove('dark');
-    localStorage.setItem('theme', 'light');
-  });
-  
-  darkThemeBtn.addEventListener('click', () => {
-    document.documentElement.classList.add('dark');
-    localStorage.setItem('theme', 'dark');
-  });
-  
-  systemThemeBtn.addEventListener('click', () => {
-    localStorage.removeItem('theme');
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  });
-  
-  // API Key functionality
-  const apiKeyInput = document.getElementById('apiKey');
-  const saveApiKeyBtn = document.getElementById('saveApiKey');
-  
-  // Check if API key is stored in localStorage
-  const savedApiKey = localStorage.getItem('geminiApiKey');
-  if (savedApiKey) {
-    apiKeyInput.value = savedApiKey;
-  }
-  
-  saveApiKeyBtn.addEventListener('click', () => {
-    const apiKey = apiKeyInput.value.trim();
-    if (apiKey) {
-      localStorage.setItem('geminiApiKey', apiKey);
-      alert('Clave de API guardada exitosamente.');
-    } else {
-      alert('Por favor ingresa una clave de API válida.');
-    }
-  });
-  
-  // Save all settings
-  const saveSettingsBtn = document.getElementById('saveSettings');
-  const emailNotifications = document.getElementById('emailNotifications');
-  const browserNotifications = document.getElementById('browserNotifications');
-  const dataCollection = document.getElementById('dataCollection');
-  
-  // Load saved preferences
-  emailNotifications.checked = localStorage.getItem('emailNotifications') === 'true';
-  browserNotifications.checked = localStorage.getItem('browserNotifications') === 'true';
-  dataCollection.checked = localStorage.getItem('dataCollection') === 'true';
-  
-  saveSettingsBtn.addEventListener('click', () => {
-    localStorage.setItem('emailNotifications', emailNotifications.checked);
-    localStorage.setItem('browserNotifications', browserNotifications.checked);
-    localStorage.setItem('dataCollection', dataCollection.checked);
+  // Wait for DOM to be fully loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    // Theme toggle functionality
+    const lightThemeBtn = document.getElementById('lightTheme');
+    const darkThemeBtn = document.getElementById('darkTheme');
+    const systemThemeBtn = document.getElementById('systemTheme');
     
-    alert('Configuración guardada exitosamente.');
+    // Check if theme is stored in localStorage
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme) {
+      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    }
+    
+    if (lightThemeBtn) {
+      lightThemeBtn.addEventListener('click', () => {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      });
+    }
+    
+    if (darkThemeBtn) {
+      darkThemeBtn.addEventListener('click', () => {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      });
+    }
+    
+    if (systemThemeBtn) {
+      systemThemeBtn.addEventListener('click', () => {
+        localStorage.removeItem('theme');
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      });
+    }
+    
+    // API Key functionality
+    const apiKeyInput = document.getElementById('apiKey') as HTMLInputElement;
+    const saveApiKeyBtn = document.getElementById('saveApiKey');
+    
+    // Check if API key is stored in localStorage
+    const savedApiKey = localStorage.getItem('geminiApiKey');
+    if (savedApiKey && apiKeyInput) {
+      apiKeyInput.value = savedApiKey;
+    }
+    
+    if (saveApiKeyBtn && apiKeyInput) {
+      saveApiKeyBtn.addEventListener('click', () => {
+        const apiKey = apiKeyInput.value.trim();
+        if (apiKey) {
+          localStorage.setItem('geminiApiKey', apiKey);
+          alert('Clave de API guardada exitosamente.');
+        } else {
+          alert('Por favor ingresa una clave de API válida.');
+        }
+      });
+    }
+    
+    // Save all settings
+    const saveSettingsBtn = document.getElementById('saveSettings');
+    const emailNotifications = document.getElementById('emailNotifications') as HTMLInputElement;
+    const browserNotifications = document.getElementById('browserNotifications') as HTMLInputElement;
+    const dataCollection = document.getElementById('dataCollection') as HTMLInputElement;
+    
+    // Load saved preferences
+    if (emailNotifications) {
+      emailNotifications.checked = localStorage.getItem('emailNotifications') === 'true';
+    }
+    
+    if (browserNotifications) {
+      browserNotifications.checked = localStorage.getItem('browserNotifications') === 'true';
+    }
+    
+    if (dataCollection) {
+      dataCollection.checked = localStorage.getItem('dataCollection') === 'true';
+    }
+    
+    if (saveSettingsBtn) {
+      saveSettingsBtn.addEventListener('click', () => {
+        if (emailNotifications) {
+          localStorage.setItem('emailNotifications', String(emailNotifications.checked));
+        }
+        
+        if (browserNotifications) {
+          localStorage.setItem('browserNotifications', String(browserNotifications.checked));
+        }
+        
+        if (dataCollection) {
+          localStorage.setItem('dataCollection', String(dataCollection.checked));
+        }
+        
+        alert('Configuración guardada exitosamente.');
+      });
+    }
   });
 </script>
