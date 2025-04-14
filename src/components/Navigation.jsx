@@ -1,21 +1,16 @@
 import { useState, useEffect } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
 
 export default function Navigation() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userType, setUserType] = useState('');
-  const [userEmail, setUserEmail] = useState('');
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [userType, setUserType] = useState(null);
   
   useEffect(() => {
-    // Check authentication status from localStorage
+    // Check authentication status on component mount
     const authStatus = localStorage.getItem('isAuthenticated') === 'true';
+    const userRole = localStorage.getItem('userType');
     setIsAuthenticated(authStatus);
-    
-    if (authStatus) {
-      setUserType(localStorage.getItem('userType') || '');
-      setUserEmail(localStorage.getItem('userEmail') || '');
-    }
+    setUserType(userRole);
   }, []);
   
   const handleLogout = () => {
@@ -25,134 +20,111 @@ export default function Navigation() {
     window.location.href = '/';
   };
   
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
   return (
-    <nav className="bg-gray-900 text-white p-4 relative">
-      <div className="container mx-auto flex justify-between items-center px-2">
-        <a href="/" className="flex items-center space-x-2 z-20">
-          <span className="text-blue-500 text-2xl sm:text-3xl">□</span>
-          <span className="text-lg sm:text-xl font-bold">JobHub</span>
-        </a>
-        
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-6">
-          <a href="/" className="hover:text-blue-400">Inicio</a>
-          <a href="/empleos" className="hover:text-blue-400">Empleos</a>
-          <a href="/empresas" className="hover:text-blue-400">Empresas</a>
-          
-          {isAuthenticated && (
-            <a href="/configuracion" className="hover:text-blue-400">Configuración</a>
-          )}
-          
-          {isAuthenticated ? (
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center">
-                <span className="text-gray-300 mr-2">
-                  {userType === 'company' ? 'Empresa:' : 'Candidato:'} 
-                </span>
-                <span>{userEmail}</span>
-              </div>
-              <button 
-                onClick={handleLogout}
-                className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded"
-              >
-                Cerrar Sesión
-              </button>
-              <a 
-                href="/dashboard" 
-                className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded"
-              >
-                Dashboard
-              </a>
+    <nav className="bg-gray-900 shadow-lg">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          <div className="flex items-center">
+            <a href="/" className="flex items-center space-x-2">
+              <span className="text-blue-500 text-2xl">□</span>
+              <span className="text-xl font-bold text-white">JobHub</span>
+            </a>
+            
+            <div className="hidden md:ml-6 md:flex md:space-x-8">
+              <a href="/" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Inicio</a>
+              <a href="/empleos" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Empleos</a>
+              <a href="/empresas" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Empresas</a>
+              
+              {isAuthenticated && userType === 'admin' && (
+                <a href="/admin/dashboard" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
+              )}
+              
+              {isAuthenticated && userType === 'admin' && (
+                <a href="/admin/configuracion" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Configuración</a>
+              )}
             </div>
-          ) : (
-            <div className="flex items-center space-x-4">
-              <a 
-                href="/login" 
-                className="hover:text-blue-400"
-              >
-                Iniciar Sesión
-              </a>
-              <a 
-                href="/register" 
-                className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded"
-              >
-                Registrarse
-              </a>
-            </div>
-          )}
-        </div>
-        
-        {/* Mobile menu button */}
-        <div className="md:hidden z-20">
-          <button 
-            onClick={toggleMobileMenu} 
-            className="text-white p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
-          </button>
+          </div>
+          
+          <div className="hidden md:flex md:items-center md:space-x-4">
+            {!isAuthenticated ? (
+              <>
+                <a href="/login" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Iniciar Sesión</a>
+                <a href="/register" className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-md text-sm font-medium">Registrarse</a>
+              </>
+            ) : (
+              <>
+                {userType === 'candidate' && (
+                  <a href="/dashboard" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Mi Perfil</a>
+                )}
+                {userType === 'company' && (
+                  <a href="/company/dashboard" className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Panel Empresa</a>
+                )}
+                <button 
+                  onClick={handleLogout}
+                  className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                >
+                  Cerrar Sesión
+                </button>
+              </>
+            )}
+          </div>
+          
+          <div className="flex md:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none"
+            >
+              <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {isMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
       
-      {/* Mobile Navigation - Overlay */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 bg-gray-900 bg-opacity-95 z-10 overflow-y-auto">
-          <div className="pt-16 pb-6 px-4 flex flex-col h-full">
-            <div className="flex flex-col space-y-3">
-              <a href="/" className="text-base py-3 border-b border-gray-700 hover:text-blue-400 text-center">Inicio</a>
-              <a href="/empleos" className="text-base py-3 border-b border-gray-700 hover:text-blue-400 text-center">Empleos</a>
-              <a href="/empresas" className="text-base py-3 border-b border-gray-700 hover:text-blue-400 text-center">Empresas</a>
-              
-              {isAuthenticated && (
-                <a href="/configuracion" className="text-base py-3 border-b border-gray-700 hover:text-blue-400 text-center">Configuración</a>
-              )}
-            </div>
+      {/* Mobile menu */}
+      {isMenuOpen && (
+        <div className="md:hidden">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a href="/" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Inicio</a>
+            <a href="/empleos" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Empleos</a>
+            <a href="/empresas" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Empresas</a>
             
-            <div className="mt-auto pt-6">
-              {isAuthenticated ? (
-                <div className="space-y-4">
-                  <div className="py-3 border-t border-gray-700 text-center">
-                    <span className="text-gray-300 block mb-1">
-                      {userType === 'company' ? 'Empresa:' : 'Candidato:'} 
-                    </span>
-                    <span className="text-base font-medium">{userEmail}</span>
-                  </div>
-                  <div className="flex flex-col space-y-3 px-4">
-                    <a 
-                      href="/dashboard" 
-                      className="bg-blue-600 hover:bg-blue-700 px-4 py-2.5 rounded text-center text-white font-medium"
-                    >
-                      Dashboard
-                    </a>
-                    <button 
-                      onClick={handleLogout}
-                      className="bg-red-600 hover:bg-red-700 px-4 py-2.5 rounded text-white font-medium"
-                    >
-                      Cerrar Sesión
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div className="flex flex-col space-y-3 border-t border-gray-700 pt-4 px-4">
-                  <a 
-                    href="/login" 
-                    className="text-base py-2.5 hover:text-blue-400 text-center"
-                  >
-                    Iniciar Sesión
-                  </a>
-                  <a 
-                    href="/register" 
-                    className="bg-blue-600 hover:bg-blue-700 px-4 py-2.5 rounded text-center text-white font-medium"
-                  >
-                    Registrarse
-                  </a>
-                </div>
-              )}
-            </div>
+            {isAuthenticated && userType === 'admin' && (
+              <a href="/admin/dashboard" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Dashboard</a>
+            )}
+            
+            {isAuthenticated && userType === 'admin' && (
+              <a href="/admin/configuracion" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Configuración</a>
+            )}
+          </div>
+          
+          <div className="pt-4 pb-3 border-t border-gray-700">
+            {!isAuthenticated ? (
+              <div className="flex flex-col space-y-3">
+                <a href="/login" className="text-base py-3 border-b border-gray-700 hover:text-blue-400 text-center">Iniciar Sesión</a>
+                <a href="/register" className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded text-center mx-4">Registrarse</a>
+              </div>
+            ) : (
+              <div className="flex flex-col space-y-3">
+                {userType === 'candidate' && (
+                  <a href="/dashboard" className="text-base py-3 border-b border-gray-700 hover:text-blue-400 text-center">Mi Perfil</a>
+                )}
+                {userType === 'company' && (
+                  <a href="/company/dashboard" className="text-base py-3 border-b border-gray-700 hover:text-blue-400 text-center">Panel Empresa</a>
+                )}
+                <button 
+                  onClick={handleLogout}
+                  className="text-base py-3 border-b border-gray-700 hover:text-blue-400 text-center"
+                >
+                  Cerrar Sesión
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}

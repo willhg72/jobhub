@@ -1,0 +1,188 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="JobHub - Configuración">
+  <div class="container mx-auto px-4 py-8 max-w-4xl">
+    <h1 class="text-2xl font-bold mb-6">Configuración del Sistema</h1>
+    
+    <div class="bg-gray-800 rounded-lg shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-semibold mb-4">Configuración General</h2>
+      
+      <form class="space-y-4">
+        <div>
+          <label for="site-name" class="block text-sm font-medium mb-1">Nombre del Sitio</label>
+          <input 
+            type="text" 
+            id="site-name" 
+            name="site-name" 
+            value="JobHub"
+            class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        
+        <div>
+          <label for="contact-email" class="block text-sm font-medium mb-1">Email de Contacto</label>
+          <input 
+            type="email" 
+            id="contact-email" 
+            name="contact-email" 
+            value="admin@jobhub.com"
+            class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        
+        <div class="flex items-center">
+          <input 
+            type="checkbox" 
+            id="maintenance-mode" 
+            name="maintenance-mode" 
+            class="h-4 w-4 rounded border-gray-600 text-blue-600 focus:ring-blue-500"
+          />
+          <label for="maintenance-mode" class="ml-2 block text-sm">Modo Mantenimiento</label>
+        </div>
+        
+        <button 
+          type="submit" 
+          class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded"
+        >
+          Guardar Configuración
+        </button>
+      </form>
+    </div>
+    
+    <div class="bg-gray-800 rounded-lg shadow-lg p-6 mb-6">
+      <h2 class="text-xl font-semibold mb-4">Configuración de IA</h2>
+      
+      <form class="space-y-4">
+        <div>
+          <label for="ai-model" class="block text-sm font-medium mb-1">Modelo de IA</label>
+          <select 
+            id="ai-model" 
+            name="ai-model" 
+            class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="gpt-3">GPT-3</option>
+            <option value="gpt-4" selected>GPT-4</option>
+            <option value="custom">Modelo Personalizado</option>
+          </select>
+        </div>
+        
+        <div>
+          <label for="ai-api-key" class="block text-sm font-medium mb-1">API Key</label>
+          <input 
+            type="password" 
+            id="ai-api-key" 
+            name="ai-api-key" 
+            placeholder="Ingresa tu API key de OpenAI"
+            class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <p class="text-xs text-gray-400 mt-1">Tu API key está encriptada y nunca se comparte con terceros.</p>
+        </div>
+        
+        <div>
+          <label for="ai-threshold" class="block text-sm font-medium mb-1">Umbral de Confianza (0-100)</label>
+          <input 
+            type="number" 
+            id="ai-threshold" 
+            name="ai-threshold" 
+            value="75"
+            min="0"
+            max="100"
+            class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        
+        <div class="flex items-center">
+          <input 
+            type="checkbox" 
+            id="ai-auto-approve" 
+            name="ai-auto-approve" 
+            checked
+            class="h-4 w-4 rounded border-gray-600 text-blue-600 focus:ring-blue-500"
+          />
+          <label for="ai-auto-approve" class="ml-2 block text-sm">Aprobación Automática</label>
+        </div>
+        
+        <button 
+          type="submit" 
+          class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded"
+        >
+          Guardar Configuración IA
+        </button>
+      </form>
+    </div>
+    
+    <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+      <h2 class="text-xl font-semibold mb-4">Configuración de Notificaciones</h2>
+      
+      <form class="space-y-4">
+        <div>
+          <label for="email-service" class="block text-sm font-medium mb-1">Servicio de Email</label>
+          <select 
+            id="email-service" 
+            name="email-service" 
+            class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="smtp" selected>SMTP</option>
+            <option value="sendgrid">SendGrid</option>
+            <option value="mailchimp">Mailchimp</option>
+          </select>
+        </div>
+        
+        <div>
+          <label for="smtp-host" class="block text-sm font-medium mb-1">SMTP Host</label>
+          <input 
+            type="text" 
+            id="smtp-host" 
+            name="smtp-host" 
+            value="smtp.example.com"
+            class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label for="smtp-user" class="block text-sm font-medium mb-1">SMTP Usuario</label>
+            <input 
+              type="text" 
+              id="smtp-user" 
+              name="smtp-user" 
+              value="notifications@jobhub.com"
+              class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          
+          <div>
+            <label for="smtp-password" class="block text-sm font-medium mb-1">SMTP Contraseña</label>
+            <input 
+              type="password" 
+              id="smtp-password" 
+              name="smtp-password" 
+              value="********"
+              class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+        </div>
+        
+        <div class="flex items-center">
+          <input 
+            type="checkbox" 
+            id="email-notifications" 
+            name="email-notifications" 
+            checked
+            class="h-4 w-4 rounded border-gray-600 text-blue-600 focus:ring-blue-500"
+          />
+          <label for="email-notifications" class="ml-2 block text-sm">Activar Notificaciones por Email</label>
+        </div>
+        
+        <button 
+          type="submit" 
+          class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded"
+        >
+          Guardar Configuración de Notificaciones
+        </button>
+      </form>
+    </div>
+  </div>
+</Layout>

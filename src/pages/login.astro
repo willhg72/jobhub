@@ -3,165 +3,138 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="JobHub - Iniciar Sesión">
-  <div class="container mx-auto p-4 flex justify-center items-center min-h-[calc(100vh-200px)]">
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 w-full max-w-md">
-      <h1 class="text-2xl font-bold mb-6 text-center">Iniciar Sesión</h1>
-      
-      <div class="mb-6">
-        <div class="flex border-b border-gray-200 dark:border-gray-700">
-          <button 
-            id="candidate-tab" 
-            class="py-2 px-4 font-medium text-center border-b-2 border-blue-500 dark:border-blue-400 text-blue-500 dark:text-blue-400 flex-1"
-          >
-            Candidato
-          </button>
-          <button 
-            id="company-tab" 
-            class="py-2 px-4 font-medium text-center text-gray-500 dark:text-gray-400 flex-1"
-          >
-            Empresa
-          </button>
-        </div>
-      </div>
-      
-      <form id="login-form" class="space-y-4">
+  <div class="container mx-auto px-4 py-8 max-w-md">
+    <h1 class="text-2xl font-bold mb-6 text-center">Iniciar Sesión</h1>
+    
+    <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+      <form id="loginForm" class="space-y-4">
         <div>
-          <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Correo Electrónico
-          </label>
+          <label for="email" class="block text-sm font-medium mb-1">Correo Electrónico</label>
           <input 
             type="email" 
             id="email" 
             name="email" 
-            required 
-            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
-            placeholder="ejemplo@correo.com"
+            class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
           />
         </div>
         
         <div>
-          <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            Contraseña
-          </label>
+          <label for="password" class="block text-sm font-medium mb-1">Contraseña</label>
           <input 
             type="password" 
             id="password" 
             name="password" 
-            required 
-            class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white"
-            placeholder="••••••••"
+            class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
           />
+        </div>
+        
+        <div>
+          <label for="userType" class="block text-sm font-medium mb-1">Tipo de Usuario</label>
+          <select 
+            id="userType" 
+            name="userType" 
+            class="w-full px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          >
+            <option value="candidate">Candidato</option>
+            <option value="company">Empresa</option>
+            <option value="admin">Administrador</option>
+          </select>
         </div>
         
         <div class="flex items-center justify-between">
           <div class="flex items-center">
             <input 
-              id="remember-me" 
-              name="remember-me" 
               type="checkbox" 
-              class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              id="remember" 
+              name="remember" 
+              class="h-4 w-4 rounded border-gray-600 text-blue-600 focus:ring-blue-500"
             />
-            <label for="remember-me" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
-              Recordarme
-            </label>
+            <label for="remember" class="ml-2 block text-sm">Recordarme</label>
           </div>
           
-          <div class="text-sm">
-            <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">
-              ¿Olvidaste tu contraseña?
-            </a>
-          </div>
+          <a href="#" class="text-sm text-blue-400 hover:underline">¿Olvidaste tu contraseña?</a>
         </div>
         
-        <div>
-          <button 
-            type="submit" 
-            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-          >
-            Iniciar Sesión
-          </button>
-        </div>
+        <button 
+          type="submit" 
+          class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded"
+        >
+          Iniciar Sesión
+        </button>
       </form>
       
       <div class="mt-6 text-center">
-        <p class="text-sm text-gray-600 dark:text-gray-400">
-          ¿No tienes una cuenta?
-          <a href="/register" class="text-blue-600 dark:text-blue-400 hover:underline">
-            Regístrate
-          </a>
-        </p>
+        <p>¿No tienes una cuenta? <a href="/register" class="text-blue-400 hover:underline">Regístrate</a></p>
       </div>
     </div>
   </div>
 </Layout>
 
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Handle tab switching
-    const candidateTab = document.getElementById('candidate-tab');
-    const companyTab = document.getElementById('company-tab');
-    let userType = 'candidate'; // Default user type
+<script is:inline>
+  // Using inline script to avoid TypeScript compilation
+  function handleLogin(event) {
+    event.preventDefault();
     
-    if (candidateTab) {
-      candidateTab.addEventListener('click', () => {
-        candidateTab.classList.add('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
-        candidateTab.classList.remove('text-gray-500', 'dark:text-gray-400');
-        
-        if (companyTab) {
-          companyTab.classList.remove('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
-          companyTab.classList.add('text-gray-500', 'dark:text-gray-400');
-        }
-        
-        userType = 'candidate';
-      });
+    // Get form elements directly from the form
+    var emailField = document.getElementById('email');
+    var passwordField = document.getElementById('password');
+    var userTypeField = document.getElementById('userType');
+    
+    // Get values safely
+    var email = '';
+    var password = '';
+    var userType = '';
+    
+    if (emailField) {
+      email = emailField.value || '';
     }
     
-    if (companyTab) {
-      companyTab.addEventListener('click', () => {
-        companyTab.classList.add('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
-        companyTab.classList.remove('text-gray-500', 'dark:text-gray-400');
-        
-        if (candidateTab) {
-          candidateTab.classList.remove('border-b-2', 'border-blue-500', 'dark:border-blue-400', 'text-blue-500', 'dark:text-blue-400');
-          candidateTab.classList.add('text-gray-500', 'dark:text-gray-400');
-        }
-        
-        userType = 'company';
-      });
+    if (passwordField) {
+      password = passwordField.value || '';
     }
     
-    // Handle form submission
-    const loginForm = document.getElementById('login-form');
+    if (userTypeField) {
+      userType = userTypeField.value || '';
+    }
     
-    if (loginForm) {
-      loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const emailInput = document.getElementById('email') as HTMLInputElement;
-        const passwordInput = document.getElementById('password') as HTMLInputElement;
-        const rememberMeInput = document.getElementById('remember-me') as HTMLInputElement;
-        
-        if (emailInput && passwordInput && rememberMeInput) {
-          const email = emailInput.value;
-          const password = passwordInput.value;
-          const rememberMe = rememberMeInput.checked;
-          
-          // In a real app, you would validate credentials against a backend
-          // For this prototype, we'll just simulate a successful login
-          
-          // Store authentication in localStorage
-          localStorage.setItem('isAuthenticated', 'true');
-          localStorage.setItem('userType', userType);
-          localStorage.setItem('userEmail', email);
-          
-          if (rememberMe) {
-            localStorage.setItem('rememberMe', 'true');
-          }
-          
-          // Redirect to dashboard
+    if (email && password && userType) {
+      // For demo purposes, we'll accept any login
+      // In a real app, you would validate credentials with your backend
+      
+      // Store authentication status
+      localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('userType', userType);
+      localStorage.setItem('userEmail', email);
+      
+      // Redirect based on user type
+      var redirectUrl = localStorage.getItem('redirectAfterLogin');
+      
+      if (redirectUrl) {
+        localStorage.removeItem('redirectAfterLogin');
+        window.location.href = redirectUrl;
+      } else {
+        // Default redirects based on user type
+        if (userType === 'admin') {
+          window.location.href = '/admin/dashboard';
+        } else if (userType === 'company') {
+          window.location.href = '/company/dashboard';
+        } else {
           window.location.href = '/dashboard';
         }
-      });
+      }
+    } else {
+      alert('Por favor, completa todos los campos.');
+    }
+  }
+  
+  // Set up the form handler when the page loads
+  document.addEventListener('DOMContentLoaded', function() {
+    var loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+      loginForm.addEventListener('submit', handleLogin);
     }
   });
 </script>

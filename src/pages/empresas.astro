@@ -1,90 +1,101 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+// Sample company data - adding more companies
+const companies = [
+  {
+    id: '1',
+    name: 'SoftDev',
+    initial: 'S',
+    color: 'bg-yellow-500',
+    description: 'Desarrollo de software a medida y consultoría tecnológica.',
+    jobCount: 3
+  },
+  {
+    id: '2',
+    name: 'MobileTech',
+    initial: 'M',
+    color: 'bg-indigo-500',
+    description: 'Especialistas en desarrollo de aplicaciones móviles y experiencias digitales.',
+    jobCount: 2
+  },
+  {
+    id: '3',
+    name: 'DataInsights',
+    initial: 'D',
+    color: 'bg-green-500',
+    description: 'Análisis de datos y soluciones de inteligencia empresarial para optimizar decisiones.',
+    jobCount: 4
+  },
+  {
+    id: '4',
+    name: 'CloudSystems',
+    initial: 'C',
+    color: 'bg-blue-500',
+    description: 'Servicios de infraestructura en la nube y soluciones de almacenamiento seguro.',
+    jobCount: 2
+  },
+  {
+    id: '5',
+    name: 'AILabs',
+    initial: 'A',
+    color: 'bg-purple-500',
+    description: 'Investigación y desarrollo de soluciones basadas en inteligencia artificial.',
+    jobCount: 5
+  },
+  {
+    id: '6',
+    name: 'SecureTech',
+    initial: 'S',
+    color: 'bg-red-500',
+    description: 'Especialistas en ciberseguridad y protección de datos empresariales.',
+    jobCount: 3
+  }
+];
 ---
 
 <Layout title="JobHub - Empresas">
-  <div class="container mx-auto px-4 py-8 max-w-6xl">
+  <div class="container mx-auto px-4 py-8">
     <h1 class="text-2xl font-bold mb-6 text-center">Empresas</h1>
     
-    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      <!-- Company cards -->
-      <div class="bg-gray-800 rounded-lg shadow-lg p-6">
-        <div class="flex items-center mb-4">
-          <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-xl font-bold mr-4">T</div>
-          <h2 class="text-xl font-semibold">TechSolutions</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {companies.map((company) => (
+        <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+          <div class="flex items-center mb-4">
+            <div class={`h-12 w-12 rounded-full ${company.color} flex items-center justify-center text-white text-xl font-bold`}>
+              {company.initial}
+            </div>
+            <h2 class="ml-4 text-xl font-bold">{company.name}</h2>
+          </div>
+          
+          <p class="mb-4 text-gray-300">{company.description}</p>
+          
+          <div class="flex justify-between items-center">
+            <span class="text-gray-400">{company.jobCount} ofertas activas</span>
+            <button 
+              class="bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded text-sm company-profile-btn" 
+              data-company-id={company.id}
+            >
+              Ver perfil
+            </button>
+          </div>
         </div>
-        <p class="text-gray-400 mb-4">Empresa líder en desarrollo de software y soluciones tecnológicas.</p>
-        <div class="flex justify-between items-center">
-          <span class="text-gray-300">5 ofertas activas</span>
-          <a href="#" class="text-blue-400 hover:underline">Ver perfil</a>
-        </div>
-      </div>
-      
-      <div class="bg-gray-800 rounded-lg shadow-lg p-6">
-        <div class="flex items-center mb-4">
-          <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-xl font-bold mr-4">I</div>
-          <h2 class="text-xl font-semibold">InnovaTech</h2>
-        </div>
-        <p class="text-gray-400 mb-4">Especialistas en innovación tecnológica y desarrollo de productos digitales.</p>
-        <div class="flex justify-between items-center">
-          <span class="text-gray-300">3 ofertas activas</span>
-          <a href="#" class="text-blue-400 hover:underline">Ver perfil</a>
-        </div>
-      </div>
-      
-      <div class="bg-gray-800 rounded-lg shadow-lg p-6">
-        <div class="flex items-center mb-4">
-          <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-xl font-bold mr-4">D</div>
-          <h2 class="text-xl font-semibold">Data Insights</h2>
-        </div>
-        <p class="text-gray-400 mb-4">Empresa especializada en análisis de datos y business intelligence.</p>
-        <div class="flex justify-between items-center">
-          <span class="text-gray-300">2 ofertas activas</span>
-          <a href="#" class="text-blue-400 hover:underline">Ver perfil</a>
-        </div>
-      </div>
-      
-      <div class="bg-gray-800 rounded-lg shadow-lg p-6">
-        <div class="flex items-center mb-4">
-          <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-xl font-bold mr-4">C</div>
-          <h2 class="text-xl font-semibold">CloudTech</h2>
-        </div>
-        <p class="text-gray-400 mb-4">Soluciones cloud y servicios de infraestructura para empresas.</p>
-        <div class="flex justify-between items-center">
-          <span class="text-gray-300">4 ofertas activas</span>
-          <a href="#" class="text-blue-400 hover:underline">Ver perfil</a>
-        </div>
-      </div>
-      
-      <div class="bg-gray-800 rounded-lg shadow-lg p-6">
-        <div class="flex items-center mb-4">
-          <div class="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center text-xl font-bold mr-4">S</div>
-          <h2 class="text-xl font-semibold">SoftDev</h2>
-        </div>
-        <p class="text-gray-400 mb-4">Desarrollo de software a medida y consultoría tecnológica.</p>
-        <div class="flex justify-between items-center">
-          <span class="text-gray-300">3 ofertas activas</span>
-          <a href="#" class="text-blue-400 hover:underline">Ver perfil</a>
-        </div>
-      </div>
-      
-      <div class="bg-gray-800 rounded-lg shadow-lg p-6">
-        <div class="flex items-center mb-4">
-          <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center text-xl font-bold mr-4">M</div>
-          <h2 class="text-xl font-semibold">MobileTech</h2>
-        </div>
-        <p class="text-gray-400 mb-4">Especialistas en desarrollo de aplicaciones móviles y experiencias digitales.</p>
-        <div class="flex justify-between items-center">
-          <span class="text-gray-300">2 ofertas activas</span>
-          <a href="#" class="text-blue-400 hover:underline">Ver perfil</a>
-        </div>
-      </div>
-    </div>
-    
-    <div class="mt-8 text-center">
-      <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded">
-        Ver más empresas
-      </button>
+      ))}
     </div>
   </div>
 </Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const profileButtons = document.querySelectorAll('.company-profile-btn');
+    
+    profileButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const companyId = button.getAttribute('data-company-id');
+        if (companyId) {
+          window.location.href = `/company/${companyId}`;
+        }
+      });
+    });
+  });
+</script>
