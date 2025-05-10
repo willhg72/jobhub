@@ -1,0 +1,387 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+// Datos de ejemplo para el dashboard
+const companyStats = {
+  jobsPosted: 12,
+  totalCandidates: 48,
+  scheduledInterviews: 8,
+  activeJobs: 5,
+  viewsLastMonth: 1250,
+  applicationsLastWeek: 32
+};
+
+// Añadimos datos más detallados sobre las ofertas laborales y sus candidatos
+const jobListings = [
+  { 
+    id: '1', 
+    title: 'Desarrollador Frontend', 
+    location: 'Remoto',
+    type: 'Tiempo completo',
+    datePosted: '2023-04-10',
+    status: 'Activa',
+    candidates: [
+      { id: '101', name: 'Carlos Rodríguez', experience: '3 años', status: 'Entrevista' },
+      { id: '102', name: 'Laura Sánchez', experience: '2 años', status: 'Prueba técnica' },
+      { id: '103', name: 'Miguel Ángel', experience: '4 años', status: 'Revisión' },
+      { id: '104', name: 'Ana Gómez', experience: '5 años', status: 'Entrevista' },
+      { id: '105', name: 'Pedro Martínez', experience: '2 años', status: 'Revisión' }
+    ]
+  },
+  { 
+    id: '3', 
+    title: 'Desarrollador Backend', 
+    location: 'Bogotá',
+    type: 'Tiempo completo',
+    datePosted: '2023-04-15',
+    status: 'Activa',
+    candidates: [
+      { id: '201', name: 'Ana Martínez', experience: '4 años', status: 'Entrevista' },
+      { id: '202', name: 'Juan Pérez', experience: '3 años', status: 'Revisión' },
+      { id: '203', name: 'Sofía López', experience: '5 años', status: 'Prueba técnica' }
+    ]
+  },
+  { 
+    id: '5', 
+    title: 'DevOps Engineer', 
+    location: 'Remoto',
+    type: 'Tiempo completo',
+    datePosted: '2023-04-20',
+    status: 'Activa',
+    candidates: [
+      { id: '301', name: 'Juan López', experience: '6 años', status: 'Prueba técnica' },
+      { id: '302', name: 'Carla Ruiz', experience: '4 años', status: 'Revisión' }
+    ]
+  },
+  { 
+    id: '2', 
+    title: 'Desarrollador iOS', 
+    location: 'Remoto',
+    type: 'Tiempo completo',
+    datePosted: '2023-04-12',
+    status: 'Activa',
+    candidates: [
+      { id: '401', name: 'María García', experience: '3 años', status: 'Revisión' },
+      { id: '402', name: 'Roberto Díaz', experience: '5 años', status: 'Entrevista' },
+      { id: '403', name: 'Carmen Vega', experience: '2 años', status: 'Revisión' },
+      { id: '404', name: 'Luis Morales', experience: '4 años', status: 'Prueba técnica' }
+    ]
+  },
+  { 
+    id: '4', 
+    title: 'Desarrollador Android', 
+    location: 'Medellín',
+    type: 'Tiempo completo',
+    datePosted: '2023-04-18',
+    status: 'Activa',
+    candidates: [
+      { id: '501', name: 'Diego Ramírez', experience: '3 años', status: 'Entrevista' },
+      { id: '502', name: 'Lucía Torres', experience: '4 años', status: 'Revisión' },
+      { id: '503', name: 'Fernando Ortiz', experience: '2 años', status: 'Prueba técnica' }
+    ]
+  }
+];
+
+const recentApplications = [
+  { id: '1', name: 'Carlos Rodríguez', position: 'Desarrollador Frontend', date: '2023-05-15', status: 'Revisión' },
+  { id: '2', name: 'Ana Martínez', position: 'Desarrollador Backend', date: '2023-05-14', status: 'Entrevista' },
+  { id: '3', name: 'Juan López', position: 'DevOps Engineer', date: '2023-05-13', status: 'Prueba técnica' },
+  { id: '4', name: 'María García', position: 'Desarrollador iOS', date: '2023-05-12', status: 'Revisión' }
+];
+
+const activeJobs = [
+  { id: '1', title: 'Desarrollador Frontend', applicants: 5, daysLeft: 15 },
+  { id: '3', title: 'Desarrollador Backend', applicants: 3, daysLeft: 10 },
+  { id: '5', title: 'DevOps Engineer', applicants: 2, daysLeft: 20 },
+  { id: '2', title: 'Desarrollador iOS', applicants: 4, daysLeft: 5 },
+  { id: '4', title: 'Desarrollador Android', applicants: 3, daysLeft: 8 }
+];
+---
+
+<Layout title="Dashboard de Empresa">
+  <div class="container mx-auto px-4 py-8">
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-3xl font-bold">Dashboard de Empresa</h1>
+      <div>
+        <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded">
+          Publicar nueva oferta
+        </button>
+      </div>
+    </div>
+    
+    <!-- Tarjetas de estadísticas -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-semibold mb-4">Resumen</h2>
+        <div class="space-y-4">
+          <div class="flex justify-between items-center">
+            <p class="text-gray-400">Ofertas publicadas</p>
+            <p class="text-2xl font-bold">{companyStats.jobsPosted}</p>
+          </div>
+          <div class="flex justify-between items-center">
+            <p class="text-gray-400">Candidatos totales</p>
+            <p class="text-2xl font-bold">{companyStats.totalCandidates}</p>
+          </div>
+          <div class="flex justify-between items-center">
+            <p class="text-gray-400">Entrevistas programadas</p>
+            <p class="text-2xl font-bold">{companyStats.scheduledInterviews}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-semibold mb-4">Actividad reciente</h2>
+        <div class="space-y-4">
+          <div class="flex justify-between items-center">
+            <p class="text-gray-400">Vistas último mes</p>
+            <p class="text-2xl font-bold">{companyStats.viewsLastMonth}</p>
+          </div>
+          <div class="flex justify-between items-center">
+            <p class="text-gray-400">Aplicaciones última semana</p>
+            <p class="text-2xl font-bold">{companyStats.applicationsLastWeek}</p>
+          </div>
+          <div class="flex justify-between items-center">
+            <p class="text-gray-400">Ofertas activas</p>
+            <p class="text-2xl font-bold">{companyStats.activeJobs}</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-semibold mb-4">Acciones rápidas</h2>
+        <div class="space-y-3">
+          <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded text-left">
+            Publicar nueva oferta
+          </button>
+          <button class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded text-left">
+            Revisar aplicaciones
+          </button>
+          <button class="w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 px-4 rounded text-left">
+            Programar entrevistas
+          </button>
+          <button class="w-full bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded text-left">
+            Editar perfil de empresa
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Ofertas activas y aplicaciones recientes -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+      <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-semibold mb-4">Ofertas Activas</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full">
+            <thead>
+              <tr class="border-b border-gray-700">
+                <th class="py-3 text-left">Puesto</th>
+                <th class="py-3 text-left">Aplicantes</th>
+                <th class="py-3 text-left">Días restantes</th>
+                <th class="py-3 text-left">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {activeJobs.map(job => (
+                <tr class="border-b border-gray-700">
+                  <td class="py-3">{job.title}</td>
+                  <td class="py-3">{job.applicants}</td>
+                  <td class="py-3">{job.daysLeft}</td>
+                  <td class="py-3">
+                    <button class="text-blue-400 hover:text-blue-300">Ver</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="bg-gray-800 rounded-lg shadow-lg p-6">
+        <h2 class="text-xl font-semibold mb-4">Aplicaciones Recientes</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full">
+            <thead>
+              <tr class="border-b border-gray-700">
+                <th class="py-3 text-left">Candidato</th>
+                <th class="py-3 text-left">Puesto</th>
+                <th class="py-3 text-left">Estado</th>
+                <th class="py-3 text-left">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {recentApplications.map(app => (
+                <tr class="border-b border-gray-700">
+                  <td class="py-3">{app.name}</td>
+                  <td class="py-3">{app.position}</td>
+                  <td class="py-3">
+                    <span class={`px-2 py-1 rounded-full text-xs ${
+                      app.status === 'Entrevista' ? 'bg-green-900 text-green-300' : 
+                      app.status === 'Prueba técnica' ? 'bg-blue-900 text-blue-300' : 
+                      'bg-yellow-900 text-yellow-300'
+                    }`}>
+                      {app.status}
+                    </span>
+                  </td>
+                  <td class="py-3">
+                    <button class="text-blue-400 hover:text-blue-300">Ver</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Calendario y próximas entrevistas -->
+    <div class="bg-gray-800 rounded-lg shadow-lg p-6 mb-8">
+      <h2 class="text-xl font-semibold mb-4">Próximas Entrevistas</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-gray-700 p-4 rounded-lg">
+          <div class="flex justify-between items-center mb-2">
+            <p class="font-medium">Ana Martínez</p>
+            <span class="bg-blue-900 text-blue-300 px-2 py-1 rounded-full text-xs">Hoy</span>
+          </div>
+          <p class="text-sm text-gray-400">Desarrollador Backend</p>
+          <p class="text-sm text-gray-400">15:00 - 16:00</p>
+        </div>
+        <div class="bg-gray-700 p-4 rounded-lg">
+          <div class="flex justify-between items-center mb-2">
+            <p class="font-medium">Juan López</p>
+            <span class="bg-blue-900 text-blue-300 px-2 py-1 rounded-full text-xs">Mañana</span>
+          </div>
+          <p class="text-sm text-gray-400">DevOps Engineer</p>
+          <p class="text-sm text-gray-400">10:00 - 11:00</p>
+        </div>
+        <div class="bg-gray-700 p-4 rounded-lg">
+          <div class="flex justify-between items-center mb-2">
+            <p class="font-medium">María García</p>
+            <span class="bg-blue-900 text-blue-300 px-2 py-1 rounded-full text-xs">Viernes</span>
+          </div>
+          <p class="text-sm text-gray-400">Desarrollador iOS</p>
+          <p class="text-sm text-gray-400">14:00 - 15:00</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="flex justify-between">
+      <a 
+        href="/company/1" 
+        class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded inline-block"
+      >
+        Ver perfil de empresa
+      </a>
+      <a 
+        href="/" 
+        class="bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-6 rounded inline-block"
+      >
+        Volver al inicio
+      </a>
+    </div>
+    
+    <!-- Nueva sección: Tabla detallada de ofertas laborales y candidatos -->
+    <div class="bg-gray-800 rounded-lg shadow-lg p-6 mb-8">
+      <h2 class="text-xl font-semibold mb-4">Ofertas Laborales y Candidatos</h2>
+      
+      <div class="overflow-x-auto">
+        <table class="min-w-full">
+          <thead>
+            <tr class="border-b border-gray-700">
+              <th class="py-3 text-left">Puesto</th>
+              <th class="py-3 text-left">Ubicación</th>
+              <th class="py-3 text-left">Tipo</th>
+              <th class="py-3 text-left">Fecha publicación</th>
+              <th class="py-3 text-left">Candidatos</th>
+              <th class="py-3 text-left">Estado</th>
+              <th class="py-3 text-left">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {jobListings.map(job => (
+              <tr class="border-b border-gray-700">
+                <td class="py-3">{job.title}</td>
+                <td class="py-3">{job.location}</td>
+                <td class="py-3">{job.type}</td>
+                <td class="py-3">{job.datePosted}</td>
+                <td class="py-3">
+                  <span class="bg-blue-900 text-blue-300 px-2 py-1 rounded-full text-xs">
+                    {job.candidates.length} candidatos
+                  </span>
+                </td>
+                <td class="py-3">
+                  <span class="bg-green-900 text-green-300 px-2 py-1 rounded-full text-xs">
+                    {job.status}
+                  </span>
+                </td>
+                <td class="py-3">
+                  <button 
+                    class="text-blue-400 hover:text-blue-300 mr-2 view-candidates-btn"
+                    data-job-id={job.id}
+                  >
+                    Ver candidatos
+                  </button>
+                </td>
+              </tr>
+              
+              <!-- Fila expandible para mostrar los candidatos (oculta por defecto) -->
+              <tr class="candidate-details hidden" id={`candidates-${job.id}`}>
+                <td colspan="7" class="py-3">
+                  <div class="bg-gray-700 p-4 rounded-lg">
+                    <h3 class="font-medium mb-3">Candidatos para {job.title}</h3>
+                    <div class="overflow-x-auto">
+                      <table class="min-w-full">
+                        <thead>
+                          <tr class="border-b border-gray-600">
+                            <th class="py-2 text-left">Nombre</th>
+                            <th class="py-2 text-left">Experiencia</th>
+                            <th class="py-2 text-left">Estado</th>
+                            <th class="py-2 text-left">Acciones</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {job.candidates.map(candidate => (
+                            <tr class="border-b border-gray-600">
+                              <td class="py-2">{candidate.name}</td>
+                              <td class="py-2">{candidate.experience}</td>
+                              <td class="py-2">
+                                <span class={`px-2 py-1 rounded-full text-xs ${
+                                  candidate.status === 'Entrevista' ? 'bg-green-900 text-green-300' : 
+                                  candidate.status === 'Prueba técnica' ? 'bg-blue-900 text-blue-300' : 
+                                  'bg-yellow-900 text-yellow-300'
+                                }`}>
+                                  {candidate.status}
+                                </span>
+                              </td>
+                              <td class="py-2">
+                                <button class="text-blue-400 hover:text-blue-300">Ver perfil</button>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Resto del código existente... -->
+  </div>
+</Layout>
+
+<script>
+  // Aquí podríamos agregar interactividad con JavaScript
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Por ahora solo mostramos un mensaje en consola
+        console.log('Botón clickeado:', button.textContent.trim());
+      });
+    });
+  });
+</script>
