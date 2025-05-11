@@ -369,19 +369,36 @@ const activeJobs = [
       </div>
     </div>
     
-    <!-- Resto del código existente... -->
-  </div>
-</Layout>
-
-<script>
-  // Aquí podríamos agregar interactividad con JavaScript
-  document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        // Por ahora solo mostramos un mensaje en consola
-        console.log('Botón clickeado:', button.textContent.trim());
+    <script>
+      // Aquí podríamos agregar interactividad con JavaScript
+      document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(button => {
+          button.addEventListener('click', () => {
+            // Por ahora solo mostramos un mensaje en consola
+            console.log('Botón clickeado:', button.textContent?.trim() || 'Sin texto');
+          });
+        });
+        
+        // Funcionalidad para mostrar/ocultar los candidatos de cada oferta
+        const viewCandidatesButtons = document.querySelectorAll('.view-candidates-btn');
+        viewCandidatesButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            const jobId = button.getAttribute('data-job-id');
+            const candidatesRow = document.getElementById(`candidates-${jobId}`);
+            
+            if (candidatesRow) {
+              // Toggle la clase hidden para mostrar/ocultar
+              candidatesRow.classList.toggle('hidden');
+              
+              // Cambiar el texto del botón
+              if (candidatesRow.classList.contains('hidden')) {
+                button.textContent = 'Ver candidatos';
+              } else {
+                button.textContent = 'Ocultar candidatos';
+              }
+            }
+          });
+        });
       });
-    });
-  });
-</script>
+    </script>
