@@ -11,45 +11,45 @@ import { FAKE_JOBS, FAKE_APPLICATIONS, FAKE_CANDIDATES, FAKE_COMPANIES } from '.
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Candidate Sidebar -->
         <div class="md:col-span-1">
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
+          <div class="bg-gray-800 rounded-lg shadow-md p-4">
             <div class="text-center mb-4">
-              <div class="w-24 h-24 rounded-full bg-blue-100 dark:bg-blue-900 mx-auto flex items-center justify-center">
+              <div class="w-24 h-24 rounded-full bg-blue-100 mx-auto flex items-center justify-center">
                 <span class="text-3xl text-blue-500">👤</span>
               </div>
-              <h2 class="text-xl font-semibold mt-2">Candidato</h2>
-              <p class="text-gray-500 dark:text-gray-400">candidato@example.com</p>
+              <h2 class="text-xl font-semibold mt-2 text-white">Candidato</h2>
+              <p class="text-gray-400">candidato@example.com</p>
             </div>
             
             <nav class="mt-6">
               <ul>
                 <li class="mb-2">
-                  <a href="#" class="flex items-center p-2 bg-blue-50 dark:bg-blue-900 rounded-md text-blue-700 dark:text-blue-200">
+                  <a href="#" class="flex items-center p-2 bg-blue-900 rounded-md">
                     <span class="mr-2">📊</span>
-                    <span>Resumen</span>
+                    <span class="font-medium text-white">Resumen</span>
                   </a>
                 </li>
                 <li class="mb-2">
-                  <a href="#" class="flex items-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
+                  <a href="#" class="flex items-center p-2 hover:bg-gray-700 rounded-md">
                     <span class="mr-2">📝</span>
-                    <span>Mis Aplicaciones</span>
+                    <span class="font-medium text-white">Mis Aplicaciones</span>
                   </a>
                 </li>
                 <li class="mb-2">
-                  <a href="#" class="flex items-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
+                  <a href="#" class="flex items-center p-2 hover:bg-gray-700 rounded-md">
                     <span class="mr-2">🔍</span>
-                    <span>Empleos Guardados</span>
+                    <span class="font-medium text-white">Empleos Guardados</span>
                   </a>
                 </li>
                 <li class="mb-2">
-                  <a href="#" class="flex items-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
+                  <a href="#" class="flex items-center p-2 hover:bg-gray-700 rounded-md">
                     <span class="mr-2">📄</span>
-                    <span>Mi CV</span>
+                    <span class="font-medium text-white">Mi CV</span>
                   </a>
                 </li>
                 <li class="mb-2">
-                  <a href="#" class="flex items-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">
+                  <a href="#" class="flex items-center p-2 hover:bg-gray-700 rounded-md">
                     <span class="mr-2">⚙️</span>
-                    <span>Configuración de Cuenta</span>
+                    <span class="font-medium text-white">Configuración de Cuenta</span>
                   </a>
                 </li>
               </ul>
@@ -61,53 +61,53 @@ import { FAKE_JOBS, FAKE_APPLICATIONS, FAKE_CANDIDATES, FAKE_COMPANIES } from '.
         <div class="md:col-span-2">
           <!-- Stats Cards -->
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
-              <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium">Aplicaciones Totales</h3>
-              <p class="text-2xl font-bold">5</p>
+            <div class="bg-gray-800 rounded-lg shadow-md p-4">
+              <h3 class="text-gray-400 text-sm font-medium">Aplicaciones Totales</h3>
+              <p class="text-2xl font-bold text-white">5</p>
               <div class="mt-2 text-green-500 text-sm">↑ 12% desde el mes pasado</div>
             </div>
             
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
-              <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium">Entrevistas</h3>
-              <p class="text-2xl font-bold">2</p>
+            <div class="bg-gray-800 rounded-lg shadow-md p-4">
+              <h3 class="text-gray-400 text-sm font-medium">Entrevistas</h3>
+              <p class="text-2xl font-bold text-white">2</p>
               <div class="mt-2 text-green-500 text-sm">↑ 5% desde el mes pasado</div>
             </div>
             
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
-              <h3 class="text-gray-500 dark:text-gray-400 text-sm font-medium">Ofertas Recibidas</h3>
-              <p class="text-2xl font-bold">1</p>
-              <div class="mt-2 text-gray-500 text-sm">Sin cambios desde el mes pasado</div>
+            <div class="bg-gray-800 rounded-lg shadow-md p-4">
+              <h3 class="text-gray-400 text-sm font-medium">Ofertas Recibidas</h3>
+              <p class="text-2xl font-bold text-white">1</p>
+              <div class="mt-2 text-gray-400 text-sm">Sin cambios desde el mes pasado</div>
             </div>
           </div>
           
           <!-- Recent Applications -->
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mb-6">
-            <h2 class="text-xl font-semibold mb-4">Mis Aplicaciones Recientes</h2>
+          <div class="bg-gray-800 rounded-lg shadow-md p-4 mb-6">
+            <h2 class="text-xl font-semibold mb-4 text-white">Mis Aplicaciones Recientes</h2>
             <div class="overflow-x-auto">
-              <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                <thead class="bg-gray-50 dark:bg-gray-700">
+              <table class="min-w-full divide-y divide-gray-700">
+                <thead class="bg-gray-700">
                   <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Puesto</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Empresa</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Fecha</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Estado</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Puesto</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Empresa</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Fecha</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Estado</th>
                   </tr>
                 </thead>
-                <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                <tbody class="bg-gray-800 divide-y divide-gray-700">
                   {FAKE_APPLICATIONS.slice(0, 5).map((application) => {
                     const job = FAKE_JOBS.find(j => j.id === application.jobId);
                     return (
                       <tr>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">{job?.title || 'Puesto no disponible'}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{job?.company || 'Empresa no disponible'}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">{new Date(application.dateApplied).toLocaleDateString('es-CO')}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">{job?.title || 'Puesto no disponible'}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">{job?.company || 'Empresa no disponible'}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">{new Date(application.dateApplied).toLocaleDateString('es-CO')}</td>
                         <td class="px-6 py-4 whitespace-nowrap">
                           <span class={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                            ${application.status === 'enviada' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' : ''}
-                            ${application.status === 'revisada' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' : ''}
-                            ${application.status === 'entrevista' ? 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' : ''}
-                            ${application.status === 'rechazada' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' : ''}
-                            ${application.status === 'aceptada' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' : ''}
+                            ${application.status === 'enviada' ? 'bg-blue-900 text-blue-200' : ''}
+                            ${application.status === 'revisada' ? 'bg-yellow-900 text-yellow-200' : ''}
+                            ${application.status === 'entrevista' ? 'bg-purple-900 text-purple-200' : ''}
+                            ${application.status === 'rechazada' ? 'bg-red-900 text-red-200' : ''}
+                            ${application.status === 'aceptada' ? 'bg-green-900 text-green-200' : ''}
                           `}>
                             {application.status.charAt(0).toUpperCase() + application.status.slice(1)}
                           </span>
@@ -121,18 +121,18 @@ import { FAKE_JOBS, FAKE_APPLICATIONS, FAKE_CANDIDATES, FAKE_COMPANIES } from '.
           </div>
           
           <!-- Recommended Jobs -->
-          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4">
-            <h2 class="text-xl font-semibold mb-4">Empleos Recomendados</h2>
+          <div class="bg-gray-800 rounded-lg shadow-md p-4">
+            <h2 class="text-xl font-semibold mb-4 text-white">Empleos Recomendados</h2>
             <div class="space-y-4">
               {FAKE_JOBS.slice(0, 3).map((job) => (
-                <div class="border-b border-gray-200 dark:border-gray-700 pb-4 last:border-0 last:pb-0">
-                  <h3 class="text-lg font-medium">{job.title}</h3>
-                  <p class="text-sm text-gray-500 dark:text-gray-400">{job.company} - {job.location}</p>
-                  <p class="text-sm mt-1">{job.description.substring(0, 100)}...</p>
+                <div class="border-b border-gray-700 pb-4 last:border-0 last:pb-0">
+                  <h3 class="text-lg font-medium text-white">{job.title}</h3>
+                  <p class="text-sm text-gray-400">{job.company} - {job.location}</p>
+                  <p class="text-sm mt-1 text-gray-300">{job.description.substring(0, 100)}...</p>
                   <div class="mt-2">
                     <a 
                       href={`/jobs/${job.id}`} 
-                      class="text-blue-600 dark:text-blue-400 hover:underline text-sm"
+                      class="text-blue-400 hover:underline text-sm"
                     >
                       Ver detalles →
                     </a>
