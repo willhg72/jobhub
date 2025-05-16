@@ -9,14 +9,14 @@ import { FAKE_COMPANIES } from '../../data/fakeData';
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {FAKE_COMPANIES.map((company) => (
-        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105">
+        <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105">
           <div class="p-4">
-            <h3 class="text-lg font-semibold">{company.name}</h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400">{company.industry} - {company.location}</p>
+            <h3 class="text-lg font-semibold text-white">{company.name}</h3>
+            <p class="text-sm text-gray-400">{company.industry} - {company.location}</p>
           </div>
-          <div class="p-4 border-t border-gray-200 dark:border-gray-700">
-            <p class="text-sm text-gray-700 dark:text-gray-300">{company.description}</p>
-            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Ofertas de empleo: {company.jobs.length}</p>
+          <div class="p-4 border-t border-gray-700">
+            <p class="text-sm text-gray-300">{company.description}</p>
+            <p class="mt-2 text-sm text-gray-400">Ofertas de empleo: {company.jobs.length}</p>
             <a 
               href={`/companies/${company.id}`} 
               class="mt-4 inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
